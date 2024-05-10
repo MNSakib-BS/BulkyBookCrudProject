@@ -1,8 +1,13 @@
 using BulkyBookWeb.Data;
+using BulkyBookWeb.Interfaces;
+using BulkyBookWeb.Models;
+using BulkyBookWeb.Repositories;
+using BulkyBookWeb.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
-
+builder.Services.AddScoped<IBulky<Category, int, Category>, CategoryReopsitory>();
+builder.Services.AddScoped<ICategoryService, CategoryService>();
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(

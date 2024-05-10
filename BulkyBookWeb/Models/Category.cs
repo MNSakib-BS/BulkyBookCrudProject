@@ -14,6 +14,9 @@ public class Category
     public int DisplayOrder { get; set; }
     public DateTime CreatedDateTime { get; set; } = DateTime.Now;
 
-
+    public static implicit operator Category(List<Category> v)
+    {
+        throw new NotImplementedException();
+    }
 }
 //DESKTOP-IHSC7M0\SQLEXPRESS

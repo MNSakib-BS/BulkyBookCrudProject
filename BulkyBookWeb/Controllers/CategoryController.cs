@@ -1,4 +1,5 @@
 ﻿using BulkyBookWeb.Data;
+using BulkyBookWeb.Interfaces;
 using BulkyBookWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,24 +8,24 @@ namespace BulkyBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
-        public CategoryController(ApplicationDbContext db)
+        private readonly ICategoryService categoryService;
+        public CategoryController(ICategoryService categoryService)
         {
-            _db = db;
+            this.categoryService = categoryService;
             
         }
-        public IActionResult Index()
+    
+        public async Task<IActionResult> Index()
         {
-           IEnumerable<Category> objCatagoryList =_db.Categories;
-            return View(objCatagoryList);
+            return View(await categoryService.GetAllCategories());
         }
         //Get
-        public IActionResult Create()
+       public IActionResult Create()
         {
            
             return View();
         }
-        //Post
+        /* //Post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
@@ -50,8 +51,8 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
             var categoryFromDb = _db.Categories.Find(id);
-         /*   var categoryFromDBFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
-            var categoryFromDBSingle = _db.Categories.SingleOrDefault(u => u.Id == id);*/
+         *//*   var categoryFromDBFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+            var categoryFromDBSingle = _db.Categories.SingleOrDefault(u => u.Id == id);*//*
             if(categoryFromDb == null)
             {
                 return NotFound();
@@ -85,8 +86,8 @@ namespace BulkyBookWeb.Controllers
                 return NotFound();
             }
             var categoryFromDb = _db.Categories.Find(id);
-            /*   var categoryFromDBFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
-               var categoryFromDBSingle = _db.Categories.SingleOrDefault(u => u.Id == id);*/
+            *//*   var categoryFromDBFirst = _db.Categories.FirstOrDefault(u => u.Id == id);
+               var categoryFromDBSingle = _db.Categories.SingleOrDefault(u => u.Id == id);*//*
             if (categoryFromDb == null)
             {
                 return NotFound();
@@ -109,6 +110,6 @@ namespace BulkyBookWeb.Controllers
                 return RedirectToAction("Index");
            
 
-        }
+        }*/
     }
 }
