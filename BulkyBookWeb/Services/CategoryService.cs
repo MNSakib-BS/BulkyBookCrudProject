@@ -17,7 +17,29 @@ namespace BulkyBookWeb.Services
             var objCatagoryList =await CateRepository.GetAll();
             return objCatagoryList;
         }
+       
 
-        
+        public Task<Category> CreatCategoryAsync(Category category)
+        {
+            var data = CateRepository.Create(category);
+            return data;
+        }
+
+        public Task<Category> getCategory(int id)
+        {
+            var data = CateRepository.Get(id);
+            return data;
+        }
+        public Task<Category> UpdateCategory(Category category) 
+        {
+            var data = CateRepository.Update(category);
+            return data;
+        }
+
+        public Task<Category> deleteCategory(int id)
+        {
+            var data = CateRepository.Delete(id);
+            return data;
+        }
     }
 }

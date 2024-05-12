@@ -35,7 +35,7 @@ namespace BulkyBookWeb.Controllers
             {
                 ModelState.AddModelError("CustomError", "Name and Description cannot be Same!");
             }
-            obj.CategoryId = 1;//should be implemented businessLOgic
+           // obj.CategoryId = 1;//should be implemented businessLOgic
             if (ModelState.IsValid)
             {
                 _db.products.Add(obj);
